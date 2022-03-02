@@ -32,6 +32,9 @@ for(int i=0; i<3; i++)
 //HDC REI = txLoadImage ("Картинки/ANIME/REI.bmp");
 HDC DESERT = txLoadImage ("Картинки/FON/DESERT.bmp");
 
+int score=0;
+char score_list[100];
+
 txSetColor (TX_BLACK, 5);
 txSetFillColor (TX_WHITE);
 
@@ -71,6 +74,20 @@ txSetFillColor (TX_WHITE);
             spike[i].x = spike[i].x - spike[i].v;
         }
 
+        //Очки
+
+        if(dino.v > 50 && dino.y == 400)
+        {
+            score++;
+        }
+
+
+
+
+        sprintf(score_list, "Счёт %d", score);
+        txTextOut (1200, 0, score_list);
+        sprintf(score_list, "V= %d", dino.v);
+        txTextOut (1200, 20, score_list);
 
 
         txSleep(10);

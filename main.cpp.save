@@ -30,7 +30,10 @@ for(int i=0; i<3; i++)
 }
 
 //HDC REI = txLoadImage ("Картинки/ANIME/REI.bmp");
-HDC DESERT = txLoadImage ("Картинки/ANIME/DESERT.bmp");
+HDC DESERT = txLoadImage ("Картинки/FON/DESERT.bmp");
+
+int score=0;
+char score_list[100];
 
 txSetColor (TX_BLACK, 5);
 txSetFillColor (TX_WHITE);
@@ -41,10 +44,12 @@ txSetFillColor (TX_WHITE);
         txClear();
         txBegin();
 
+        txBitBlt(txDC(),0, 0, 1300, 600, DESERT);
+
         txLine(0, 525, 1300, 525);
 
         //Динозавр
-        Win32::TransparentBlt (txDC(), dino.x, dino.y, 100, 125, dino.pic, 0, 0, 200, 253, TX_BLACK);
+        Win32::TransparentBlt (txDC(), dino.x, dino.y, 100, 125, dino.pic, 0, 0, 200, 253, TX_WHITE);
 
         if(GetAsyncKeyState(VK_SPACE))
         {
@@ -69,6 +74,15 @@ txSetFillColor (TX_WHITE);
             spike[i].x = spike[i].x - spike[i].v;
         }
 
+        //Очки
+
+        if()
+
+
+
+
+        sprintf(score_list, "Счёт %d", score);
+        txTextOut (1200, 0, score_list);
 
 
         txSleep(10);
@@ -76,7 +90,11 @@ txSetFillColor (TX_WHITE);
     }
 
     txDeleteDC (dino.pic);
-    txDeleteDC (spike[0].pic);
+    for(int i=0; i<3; i++)
+    {
+        txDeleteDC (spike[i].pic);
+    }
+    txDeleteDC (DESERT);
 
 return 0;
 }
